@@ -1,0 +1,52 @@
+{
+  "formatCodeOptions": {
+    "indentSize": 2,
+    "tabSize": 2
+  },
+  "compilerOptions": {
+    "outDir": "lib",
+    "module": "commonjs",
+    "target": "esnext",
+    "lib": [
+      "es6",
+      "dom",
+      "esnext"
+    ],
+    "experimentalDecorators": true,
+    "removeComments": true,
+    "sourceMap": true,
+    "allowJs": true,
+    "jsx": "react",
+    "moduleResolution": "node",
+    "rootDir": ".",
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": true,
+    "baseUrl": "./src",
+    "paths": {
+      "gray-matter": [
+        "./typings/grapy-matter" 
+      ]
+    },
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "./node_modules",
+    "./dist",
+    "jest"
+  ],
+  "ordered-imports": [
+    true,
+    {
+      "import-sources-order": "any",
+      "named-imports-order": "case-insensitive"
+    }
+  ]
+}

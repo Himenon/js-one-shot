@@ -1,0 +1,9 @@
+language: node_js
+cache: yarn
+before_script:
+  - yarn install
+node_js:
+  - "9.8.0"
+script:
+    - commitlint-travis
+    - yarn run test:coverage
