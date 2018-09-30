@@ -27,10 +27,20 @@
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
-    "baseUrl": "./src",
+    "baseUrl": "./",
+    "typeRoots": [
+      "./typings",
+      "./node_modules/@types"
+    ],
     "paths": {
       "gray-matter": [
-        "./typings/grapy-matter" 
+        "./typings/gray-matter" 
+      ],
+      "section-matter": [
+        "./typings/section-matter/index.d.ts"
+      ],
+      "section-matter*": [
+        "./typings/section-matter*"
       ]
     },
   },
