@@ -5,7 +5,8 @@
 
 ## Library
 
-* gray-matter
+* [gray-matter](https://github.com/jonschlinkert/gray-matter)
+* [section-matter](https://github.com/jonschlinkert/section-matter)
 
 ## Setup commit-lint
 
