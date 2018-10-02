@@ -1,20 +1,20 @@
-export interface Section {
+export interface Section<T> {
   key: string;
-  data: string;
+  data: T;
   content: string;
 }
 
-export interface Sections {
+export interface Sections<T> {
   content: string;
-  sections: Section[];
+  sections: Section<T>[];
 }
 
 export interface Options {
-  parse?: (section: Section, sections: Section[]) => void;
+  parse?: (section: Section<string>, sections: Section<string>[]) => void;
 }
 
 declare module "section-matter" {
-  function section(input: string, options?: Options): Sections
+  function section<T = string>(input: string, options?: Options): Sections<T>
   // @ts-ignore
   export = section
 }
