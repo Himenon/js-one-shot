@@ -1,0 +1,18 @@
+{
+  "extends": [
+    "tslint:recommended"
+  ],
+  "linterOptions": {
+    "exclude": [
+      "node_modules/**/*.ts"
+    ]
+  },
+  "rules": {
+    "no-string-throw": true,
+    "no-unused-expression": true,
+    "no-duplicate-variable": true,
+    "no-console": false,
+    "object-literal-sort-keys": false,
+    "trailing-comma": false
+  }
+}
