@@ -15,21 +15,24 @@ app.use(
     secret: 'keyboard cat2',
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true, maxAge: 36000 },
+    cookie: { secure: false, maxAge: 36000 }, // when local -> secure: false
     store: sessionStore
   })
 );
 
-// app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
-//   console.log(req.session);
-//   if (req.session && !req.session.user) {
-//     req.session.user = {};
-//   }
-//   next();
-// });
+const sessionDebug = () => {
+  sessionStore.all((err, obj) => {
+    if (err) {
+      // console.error(err);
+      throw Error(err);
+    }
+    // console.log(obj);
+  });
+};
 
 const sessionCheck = (req: express.Request, res: express.Response, next: express.NextFunction) => {
-  if (req.session && req.session.user) {
+  sessionDebug();
+  if (req.session && req.session.userName) {
     next();
   } else {
     res.redirect('/login');
@@ -40,6 +43,10 @@ app.get(
   '/',
   sessionCheck,
   (req: express.Request, res: express.Response, next: express.NextFunction) => {
+    if (!req.session) {
+      res.redirect('/login');
+      return;
+    }
     res.send(`
     <!DOCTYPE html>
     <html lang="en">
@@ -47,16 +54,17 @@ app.get(
       <title>Welcome Page</title>
     </head>
     <body>
-    <h1>Welcome</h1>
+    <h1>Welcome ${req.session.userName}</h1>
     <p>You Logged in!</p>
+    <a href="/logout">Logout</a>
     </body>
     </html>
     `);
   }
 );
 
-const loginView = (res: express.Response, err?: { message: string }) => {
-  res.write(`
+export const getLoginViewContent = (err?: { message: string }): string => {
+  let result = `
   <!DOCTYPE html>
   <html lang="en">
     <meta charset="UTF-8">
@@ -67,14 +75,14 @@ const loginView = (res: express.Response, err?: { message: string }) => {
   <form method="POST" action="/login">
     <input type="text" name="userName" placeholder="username">
     <input type="submit" value="login">
-  </form>`);
+  </form>`;
   if (err) {
-    res.write('<p style="color: red;">' + err.message + '</p>');
+    result += '<p style="color: red;">' + err.message + '</p>';
   }
-  res.write(`</body>
+  result += `</body>
     </html>
-  `);
-  res.end();
+  `;
+  return result;
 };
 
 app
@@ -85,7 +93,8 @@ app
       res: express.Response,
       next: express.NextFunction
     ) => {
-      loginView(res);
+      res.write(getLoginViewContent());
+      res.end();
     }
   )
   .post(
@@ -95,12 +104,34 @@ app
       next: express.NextFunction
     ) => {
       if (req.session && req.body && req.body.userName) {
-        req.session.user = { name: req.body.userName };
-        res.redirect('/');
+        req.session.userName = req.body.userName;
+        req.session.save(() => {
+          res.redirect('/');
+        });
       } else {
-        loginView(res, { message: '入力が正しくありません。確認して再入力してください。' });
+        res.write(getLoginViewContent({ message: '入力が正しくありません。確認して再入力してください。' }));
+        res.end();
       }
     }
   );
 
-app.listen(3000, () => console.log('Example app listening on port 3000!'));
+app.route('/logout')
+   .get(
+    (
+      req: express.Request,
+      res: express.Response,
+      next: express.NextFunction
+    ) => {
+      if (req.session) {
+        req.session.userName = undefined;
+      }
+      res.redirect('/login');
+    }
+  );
+
+const server = app.listen(3000, () => console.log('Example app listening on port 3000!'));
+
+export {
+  app,
+  server
+};
