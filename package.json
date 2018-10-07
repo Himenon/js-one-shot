@@ -11,7 +11,7 @@
     "express:session": "node ./lib/express-session/oneshot.js",
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "lint:fix": "yarn run lint -- --fix",
-    "test": "jest -c jest.config.json",
+    "test": "jest -c jest.config.json --detectOpenHandles",
     "test:coverage": "yarn run test -- --coverage && cat ./coverage/lcov.info | npx coveralls",
     "test:watch:dev": "yarn run test -- --watchAll --verbose false",
     "version:major": "changelog -M && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version major",
