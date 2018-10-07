@@ -2,8 +2,16 @@ import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
 import * as express from 'express';
 import * as session from 'express-session';
+import * as http from 'http';
+import * as portfinder from 'portfinder';
+
 const app = express();
 const sessionStore = new session.MemoryStore();
+let server: http.Server;
+
+interface OneShotSession extends Express.Session {
+  userName: string;
+}
 
 app.set('trust proxy', 1); // trust first proxy
 app.use(bodyParser.json());
@@ -20,18 +28,7 @@ app.use(
   })
 );
 
-const sessionDebug = () => {
-  sessionStore.all((err, obj) => {
-    if (err) {
-      // console.error(err);
-      throw Error(err);
-    }
-    // console.log(obj);
-  });
-};
-
 const sessionCheck = (req: express.Request, res: express.Response, next: express.NextFunction) => {
-  sessionDebug();
   if (req.session && req.session.userName) {
     next();
   } else {
@@ -43,10 +40,7 @@ app.get(
   '/',
   sessionCheck,
   (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    if (!req.session) {
-      res.redirect('/login');
-      return;
-    }
+    const localSession = req.session as OneShotSession;
     res.send(`
     <!DOCTYPE html>
     <html lang="en">
@@ -54,7 +48,7 @@ app.get(
       <title>Welcome Page</title>
     </head>
     <body>
-    <h1>Welcome ${req.session.userName}</h1>
+    <h1>Welcome ${localSession.userName}</h1>
     <p>You Logged in!</p>
     <a href="/logout">Logout</a>
     </body>
@@ -123,15 +117,17 @@ app.route('/logout')
       next: express.NextFunction
     ) => {
       if (req.session) {
-        req.session.userName = undefined;
+        req.session.destroy(() => undefined);
       }
       res.redirect('/login');
     }
   );
 
-const server = app.listen(3000, () => console.log('Example app listening on port 3000!'));
+portfinder.getPort({ port: 3000 }, (error: any, port: number) => {
+  server = app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+});
 
 export {
   app,
-  server
+  server,
 };
