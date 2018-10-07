@@ -5,7 +5,7 @@ import { app, server } from '../oneshot';
 jest.unmock('../oneshot');
 
 describe('非ログイン状態', () => {
-  afterEach(() => {
+  afterAll(() => {
     server.close();
   });
 

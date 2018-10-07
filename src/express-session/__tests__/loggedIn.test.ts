@@ -7,7 +7,7 @@ jest.unmock('../oneshot');
 describe('ログインしている状態', () => {
   let cookies: string;
   const userName = 'John Smith';
-  afterEach(() => {
+  afterAll(() => {
     server.close();
   });
 
@@ -30,5 +30,5 @@ describe('ログインしている状態', () => {
     return supertest(app).get('/logout').set('Cookie', cookies).expect(302).then((res: Response) => {
       expect(res.header.location).toEqual('/login');
     });
-  })
+  });
 });
