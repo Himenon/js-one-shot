@@ -7,6 +7,12 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "react:function",
+      "program": "${workspaceFolder}/lib/react-function/oneshot.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "express:session",
       "program": "${workspaceFolder}/lib/express-session/oneshot.js"
     }
