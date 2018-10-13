@@ -7,7 +7,7 @@ export const createExample = () => {
   body {
     font-family: sans-serif;
   }
-  `;
+  ]`;
 
   const Title = styled.h1`
     font-size: 1.5em;
