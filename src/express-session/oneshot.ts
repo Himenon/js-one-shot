@@ -124,7 +124,7 @@ app.route('/logout')
   );
 
 portfinder.getPort({ port: 3000 }, (error: any, port: number) => {
-  server = app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+  server = app.listen(port, () => process.stdout.write(`Example app listening on port ${port}!`));
 });
 
 export {
