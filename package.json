@@ -1,6 +1,6 @@
 {
   "name": "js-one-shot",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Libraryの調査",
   "main": "entry.js",
   "author": "Himenon",
@@ -57,6 +57,8 @@
     }
   },
   "dependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-transform-react-jsx": "^7.0.0",
     "@babel/standalone": "^7.1.0",
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.3",
