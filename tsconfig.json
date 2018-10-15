@@ -39,6 +39,12 @@
       "section-matter": [
         "./typings/section-matter/index.d.ts"
       ],
+      "remark": [
+        "./typings/remark/index.d.ts"
+      ],
+      "remark-react": [
+        "./typings/remark-react/index.d.ts"
+      ],
       "section-matter*": [
         "./typings/section-matter*"
       ]

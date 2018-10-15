@@ -64,9 +64,12 @@
     "cookie-parser": "^1.4.3",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
+    "mdast-util-to-hast": "^3.0.2",
     "portfinder": "^1.0.17",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
+    "remark": "^9.0.0",
+    "remark-react": "^4.0.3",
     "styled-components": "^3.4.10"
   }
 }
