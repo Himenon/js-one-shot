@@ -6,6 +6,12 @@ export interface AppState {
   text: string;
 }
 
+// @ts-ignore
+const processor = remark().use(reactRenderer, {
+  prefix: 'md-',
+  sanitize: true
+})
+
 export class App extends React.Component<{}, AppState> {
   constructor(props: {}) {
     super(props);
@@ -19,19 +25,9 @@ export class App extends React.Component<{}, AppState> {
   }
 
   render() {
-    return (
-      <div>
-        <textarea value={this.state.text} onChange={this.onChange} />
-        <div id="preview">
-          {
-            // @ts-ignore
-            remark()
-              .use(reactRenderer)
-              .processSync(this.state.text).contents
-          }
-        </div>
-      </div>
-    );
+    // @ts-ignore
+    const content = processor.processSync(this.state.text).contents
+    return content;
   }
 }
 
