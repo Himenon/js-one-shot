@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as remark from 'remark';
+import html = require('remark-html');
 import reactRenderer from 'remark-react';
 
 export class App extends React.Component<{}, { text: string }> {
@@ -14,17 +15,14 @@ export class App extends React.Component<{}, { text: string }> {
     this.setState({ text: e.target.value });
   }
   public render() {
+    // @ts-ignore
+    const markUp = { __html: remark().use(reactRenderer, {
+      sanitize: false
+    }).use(html).processSync(this.state.text).contents };
     return (
       <div>
         <textarea value={this.state.text} onChange={this.onChange} />
-        <div id='preview'>
-          {
-            // @ts-ignore
-            remark()
-              .use(reactRenderer)
-              .processSync(this.state.text).contents
-          }
-        </div>
+        <div id='preview' dangerouslySetInnerHTML={markUp} />
       </div>
     );
   }
