@@ -30,16 +30,16 @@ test('HogeCreatorのテスト', () => {
 test('childrenを含むテスト', () => {
   const nextComponentCreator = OneShot.getNestComponentCreator();
   const receiveComponent = nextComponentCreator();
-  const expectComponent = <OneShot.FooComponent name="foooo"><OneShot.HogeComponent text="hoge" /></OneShot.FooComponent>;
+  const expectComponent = <OneShot.FooComponent name='foooo'><OneShot.HogeComponent text='hoge' /></OneShot.FooComponent>;
   const myComponent1 = renderer.create(receiveComponent);
   const myComponent2 = renderer.create(expectComponent);
   expect(myComponent1.toJSON()).toEqual(myComponent2.toJSON());
 })
 
 test('引数を取得するような生成パターン', () => {
-  const nextComponentCreator = OneShot.getNestComponentCreator2({ name: "foooo" }, { text: "hoge" });
+  const nextComponentCreator = OneShot.getNestComponentCreator2({ name: 'foooo' }, { text: 'hoge' });
   const receiveComponent = nextComponentCreator();
-  const expectComponent = <OneShot.FooComponent name="foooo"><OneShot.HogeComponent text="hoge" /></OneShot.FooComponent>;
+  const expectComponent = <OneShot.FooComponent name='foooo'><OneShot.HogeComponent text='hoge' /></OneShot.FooComponent>;
   const myComponent1 = renderer.create(receiveComponent);
   const myComponent2 = renderer.create(expectComponent);
   expect(myComponent1.toJSON()).toEqual(myComponent2.toJSON());

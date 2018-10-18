@@ -36,5 +36,6 @@
     "max-line-length": [true, {"limit": 140, "ignore-pattern": "^import |^export {(.*?)}"}],
     "interface-name": false,
     "max-classes-per-file": false,
+    "no-require-imports": false
   }
 }

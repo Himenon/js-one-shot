@@ -1,6 +1,6 @@
-import * as React from "react";
-import * as remark from "remark";
-import reactRenderer from "remark-react";
+import * as React from 'react';
+import * as remark from 'remark';
+import reactRenderer from 'remark-react';
 
 export interface AppState {
   text: string;
@@ -16,15 +16,15 @@ export class App extends React.Component<{}, AppState> {
   constructor(props: {}) {
     super(props);
     this.state = {
-      text: "# hello world"
+      text: '# hello world'
     };
   }
 
-  onChange(e: React.ChangeEvent<HTMLTextAreaElement>): void {
+  public onChange(e: React.ChangeEvent<HTMLTextAreaElement>): void {
     this.setState({ text: e.target.value });
   }
 
-  render() {
+  public render() {
     // @ts-ignore
     const content = processor.processSync(this.state.text).contents
     return content;

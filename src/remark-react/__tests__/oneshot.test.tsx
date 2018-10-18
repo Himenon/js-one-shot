@@ -1,6 +1,6 @@
 import * as React from 'react';
-import * as OneShot from '../oneshot';
 import * as renderer from 'react-test-renderer';
+import * as OneShot from '../oneshot';
 
 
 test('React.MyComponent', () => {

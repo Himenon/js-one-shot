@@ -45,7 +45,7 @@ export function getHogeCreator() {
  */
 export function getNestComponentCreator() {
   const args = ['FooComponent', 'HogeComponent'];
-  const func = `React.createElement(FooComponent, { name: "foooo" }, React.createElement(HogeComponent, { text: "hoge" }, null))`;
+  const func = 'React.createElement(FooComponent, { name: "foooo" }, React.createElement(HogeComponent, { text: "hoge" }, null))';
   const create = new Function('React', ...args, `return props => ${func}`);
   return create(React, FooComponent, HogeComponent);
 }
@@ -55,7 +55,9 @@ export function getNestComponentCreator() {
  */
 export function getNestComponentCreator2(props1: FooProps, props2: HogeProps) {
   const args = ['FooComponent', 'HogeComponent'];
-  const func = `React.createElement(FooComponent, ${JSON.stringify(props1)}, React.createElement(HogeComponent, ${JSON.stringify(props2)}, null))`;
+  const text1 = `React.createElement(FooComponent, ${JSON.stringify(props1)}, `;
+  const text2 = `React.createElement(HogeComponent, ${JSON.stringify(props2)}, null))`;
+  const func = text1 + text2;
   const create = new Function('React', ...args, `return props => ${func}`);
   return create(React, FooComponent, HogeComponent);
 }
