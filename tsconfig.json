@@ -14,8 +14,9 @@
     ],
     "experimentalDecorators": true,
     "removeComments": true,
+    "composite": true,
     "sourceMap": true,
-    "allowJs": true,
+    "allowJs": false,
     "jsx": "react",
     "moduleResolution": "node",
     "rootDir": "./src",
@@ -38,6 +39,15 @@
       ],
       "section-matter": [
         "./typings/section-matter/index.d.ts"
+      ],
+      "remark": [
+        "./typings/remark/index.d.ts"
+      ],
+      "remark-html": [
+        "./typings/remark-html/index.d.ts"
+      ],
+      "remark-react": [
+        "./typings/remark-react/index.d.ts"
       ],
       "section-matter*": [
         "./typings/section-matter*"

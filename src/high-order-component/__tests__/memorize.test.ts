@@ -1,6 +1,6 @@
-import { memorize } from "../memorize";
+import { memorize } from '../memorize';
 
-test("memorize", () => {
+test('memorize', () => {
   function add(a: number, b: number) {
     return a + b;
   }
