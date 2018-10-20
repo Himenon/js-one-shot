@@ -43,6 +43,9 @@
       "remark": [
         "./typings/remark/index.d.ts"
       ],
+      "remark-html": [
+        "./typings/remark-html/index.d.ts"
+      ],
       "remark-react": [
         "./typings/remark-react/index.d.ts"
       ],

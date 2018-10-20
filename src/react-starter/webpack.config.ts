@@ -11,7 +11,6 @@ export const resolveApp = (relativePath: string) =>
 import ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const webpackModule: webpack.Configuration[] = [
-  // rendererで利用するscript。entryはwindowの種類の数だけある
   {
     stats: 'errors-only',
     entry: {

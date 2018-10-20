@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as remark from 'remark';
-import html = require('remark-html');
+import * as html from 'remark-html';
 import reactRenderer from 'remark-react';
 
 export class App extends React.Component<{}, { text: string }> {
@@ -11,13 +11,15 @@ export class App extends React.Component<{}, { text: string }> {
     };
     this.onChange = this.onChange.bind(this);
   }
+
   public onChange(e: React.ChangeEvent<HTMLTextAreaElement>): void {
     this.setState({ text: e.target.value });
   }
+
   public render() {
     // @ts-ignore
     const markUp = { __html: remark().use(reactRenderer, {
-      sanitize: false
+      sanitize: false,
     }).use(html).processSync(this.state.text).contents };
     return (
       <div>

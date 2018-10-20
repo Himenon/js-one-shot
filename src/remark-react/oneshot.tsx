@@ -1,33 +1,25 @@
 import * as React from 'react';
 import * as remark from 'remark';
-import reactRenderer from 'remark-react';
+import * as html from 'remark-html';
+import remarkReact from 'remark-react';
 
-export interface AppState {
-  text: string;
+export interface AppProps {
+  title: string;
 }
 
 // @ts-ignore
-const processor = remark().use(reactRenderer, {
+const processor = remark().use(remarkReact, {
   prefix: 'md-',
   sanitize: true
 })
 
-export class App extends React.Component<{}, AppState> {
-  constructor(props: {}) {
-    super(props);
-    this.state = {
-      text: '# hello world'
-    };
-  }
-
-  public onChange(e: React.ChangeEvent<HTMLTextAreaElement>): void {
-    this.setState({ text: e.target.value });
-  }
-
+export class App extends React.Component<AppProps, {}> {
   public render() {
     // @ts-ignore
-    const content = processor.processSync(this.state.text).contents
-    return content;
+    const content = { __html: remark().use(remarkReact, {
+      sanitize: false
+    }).use(html).processSync(this.props.title).contents };
+    return <div dangerouslySetInnerHTML={content} />;
   }
 }
 

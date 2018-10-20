@@ -4,15 +4,19 @@ import * as OneShot from '../oneshot';
 
 
 test('React.MyComponent', () => {
-  const comp = React.createElement(OneShot.App);
-  expect(comp).toEqual(<OneShot.App />);
+  const comp = React.createElement(OneShot.App, { title: '' });
+  expect(comp).toEqual(<OneShot.App title='' />);
 });
 
-test('レンダリングを行った結果が一致する', () => {
+test('MarkdownからHTMLがレンダリングされていることを確認する', () => {
   const component = renderer.create(
-    <OneShot.App />
+    <OneShot.App title='# Hello world' />
   );
-  const tree = component.toJSON();
-  expect(tree).toEqual(`# hello world
+  const componentJSON = component.toJSON()!;
+  expect(componentJSON).not.toBeNull();
+  expect(componentJSON.props.dangerouslySetInnerHTML).not.toBeUndefined();
+  expect(componentJSON.props.dangerouslySetInnerHTML.__html).not.toBeUndefined();
+  const html = componentJSON.props.dangerouslySetInnerHTML.__html;
+  expect(html).toBe(`<h1>Hello world</h1>
 `);
 })

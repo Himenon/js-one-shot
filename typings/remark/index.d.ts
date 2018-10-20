@@ -1,4 +1,6 @@
-interface Parser {}
+interface Parser {
+  use: any
+}
 interface Options {}
 
 
