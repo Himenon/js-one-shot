@@ -5,14 +5,42 @@
 
 ## Library
 
-* [express-session](https://github.com/expressjs/session)
-* [gray-matter](https://github.com/jonschlinkert/gray-matter)
-* [section-matter](https://github.com/jonschlinkert/section-matter)
+<details>
+  <summary>@babel/standalone</summary>
+  https://github.com/babel/babel/tree/master/packages/babel-standalone
+</details>
+<details>
+  <summary>express-session</summary>
+  <p>https://github.com/expressjs/session</p>
+  <p>Debug `yarn run express:session`</p>
+</details>
+<details>
+  <summary>gray-matter</summary>
+  https://github.com/jonschlinkert/gray-matter
+</details>
+<details>
+  <summary>remark</summary>
+  https://github.com/gnab/remark
+</details>
+<details>
+  <summary>remark-react</summary>
+  https://github.com/mapbox/remark-react
+</details>
+<details>
+  <summary>section-matter</summary>
+  https://github.com/jonschlinkert/section-matter
+</details>
+<details>
+  <summary>styled-components</summary>
+  https://github.com/styled-components
+</details>
 
-## Debug
+## Other
 
-* express-session
-  * `yarn run express:session`
+<details>
+  <summary>react-starter</summary>
+  Debug: `yarn run react:starter`
+</details>
 
 ## Setup commit-lint
 
