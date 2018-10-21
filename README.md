@@ -10,9 +10,14 @@
   https://github.com/babel/babel/tree/master/packages/babel-standalone
 </details>
 <details>
+  <summary>EventEmitter</summary>
+  <p>https://nodejs.org/api/events.html#events_emitter_removelistener_eventname_listener</p>
+  <p>EventEmitterのテスト</p>
+</details>
+<details>
   <summary>express-session</summary>
   <p>https://github.com/expressjs/session</p>
-  <p>Debug `yarn run express:session`</p>
+  <p>Debug: yarn run express:session</p>
 </details>
 <details>
   <summary>gray-matter</summary>
