@@ -45,6 +45,10 @@ export class CustomEventEmitter extends EventEmitter {
     })
   }
 
+  public on<K extends keyof CustomListener>(event: K, listener : CustomListener[K]): this {
+    return super.on(event as string, listener);
+  }
+
   public addListener<K extends keyof CustomListener>(event: K, listener : CustomListener[K]): this {
     return super.addListener(event as string, listener);
   }
