@@ -6,11 +6,11 @@ import { Markdown, MarkdownProps } from '../markdown';
 describe('MarkdownComponent', () => {
   test('Rendering Value', () => {
     const props: MarkdownProps = {
-      text: 'Markdown',
+      text: '<h1>Hello Gen</h1>',
       h1: {},
       scope: { Title: (props1: Heading1Props) => <Heading1 {...props1} /> },
     };
     const result = renderer.create(<Markdown {...props} />);
-    expect(result).toBe('ha1');
+    expect(result).toBe('<div><h1>Markdown</h1></div>');
   });
 });

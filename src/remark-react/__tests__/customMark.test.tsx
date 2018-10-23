@@ -1,6 +1,7 @@
 import * as React from 'react';
+import * as ReactDOMServer from 'react-dom/server';
 import * as renderer from 'react-test-renderer';
-import * as OneShot from '../oneshot';
+import * as OneShot from '../customMark';
 
 test('React.MyComponent', () => {
   const comp = React.createElement(OneShot.App, { title: '' });
@@ -14,6 +15,12 @@ test('MarkdownからHTMLがレンダリングされていることを確認す�
   expect(componentJSON.props.dangerouslySetInnerHTML).not.toBeUndefined();
   expect(componentJSON.props.dangerouslySetInnerHTML.__html).not.toBeUndefined();
   const html = componentJSON.props.dangerouslySetInnerHTML.__html;
-  expect(html).toBe(`<h1>Hello world</h1>
+  expect(html).toBe(`<h2>Hello world</h2>
 `);
+});
+
+test('React.renderToStaticMarkup', () => {
+  const component = ReactDOMServer.renderToStaticMarkup(<OneShot.App title="# Hello world" />);
+  expect(component).toBe(`<div><h2>Hello world</h2>
+</div>`);
 });

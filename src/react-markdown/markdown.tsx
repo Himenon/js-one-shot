@@ -6,7 +6,7 @@ import * as remarkReact from 'remark-react';
 // @ts-ignore
 import * as remarkSlug from 'remark-slug';
 
-import { Heading1, Heading1Props } from './heading1';
+import { heading, Heading1, Heading1Props } from './heading1';
 
 export interface ScopedComponents {
   Title: (props: Heading1Props) => React.ReactElement<Heading1Props>;
@@ -22,34 +22,11 @@ export interface MappedScope {
   h1: React.ReactNode | undefined;
 }
 
-export interface HeadingProps {
-  id: string;
-  children?: React.ReactNode;
-}
-
 const defaultProps: MarkdownProps = {
   h1: {},
   scope: {
     Title: (props: Heading1Props) => <Heading1 {...props} />,
   },
-};
-
-const heading = (Comp: any) => (props: HeadingProps): React.ReactNode => {
-  return React.createElement(
-    Comp,
-    props,
-    React.createElement(
-      'a',
-      {
-        href: '#' + props.id,
-        style: {
-          color: 'inherit',
-          textDecoration: 'none',
-        },
-      },
-      props.children,
-    ),
-  );
 };
 
 export class Markdown extends React.Component<MarkdownProps, {}> {
