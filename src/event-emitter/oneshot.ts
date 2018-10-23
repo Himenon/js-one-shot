@@ -23,7 +23,7 @@ export interface CustomPayload {
   reset: undefined;
 }
 
-export interface CustomListener {
+export interface CustomListener{
   hoge: (payload: CustomPayload['hoge']) => void;
   foo: (payload: CustomPayload['foo']) => void;
   add: (payload: CustomPayload['add']) => void;
@@ -46,11 +46,11 @@ export class CustomEventEmitter extends EventEmitter {
   }
 
   public on<K extends keyof CustomListener>(event: K, listener : CustomListener[K]): this {
-    return super.on(event as string, listener);
+    return super.on(event, listener);
   }
 
   public addListener<K extends keyof CustomListener>(event: K, listener : CustomListener[K]): this {
-    return super.addListener(event as string, listener);
+    return super.addListener(event, listener);
   }
 
   public emit<K extends keyof CustomListener>(event: K, payload: CustomPayload[K]): boolean {
