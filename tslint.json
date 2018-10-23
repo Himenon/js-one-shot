@@ -12,7 +12,7 @@
     ]
   },
   "rules": {
-    "prettie": [
+    "prettier": [
       true,
       {
         "useTabs": false,

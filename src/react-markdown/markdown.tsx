@@ -1,21 +1,21 @@
-import * as React from 'react'
+import * as React from 'react';
 // @ts-ignore
-import * as remark from 'remark'
+import * as remark from 'remark';
 // @ts-ignore
-import * as remarkReact from 'remark-react'
+import * as remarkReact from 'remark-react';
 // @ts-ignore
-import * as remarkSlug from 'remark-slug'
+import * as remarkSlug from 'remark-slug';
 
 import { Heading1, Heading1Props } from './heading1';
 
 export interface ScopedComponents {
-  Title: () => React.Node
+  Title: (props: Heading1Props) => React.ReactElement<Heading1Props>;
 }
 
-
 export interface MarkdownProps {
-  h1: { [key: string]: number }
-  scope: ScopedComponents
+  text?: string;
+  h1: { [key: string]: number };
+  scope: ScopedComponents;
 }
 
 export interface MappedScope {
@@ -23,19 +23,16 @@ export interface MappedScope {
 }
 
 export interface HeadingProps {
-  id: string
-  children?: React.ReactNode[]
+  id: string;
+  children?: React.ReactNode;
 }
 
 const defaultProps: MarkdownProps = {
-  h1: {
-    mb: 3,
-    mt: 4,
-  },
+  h1: {},
   scope: {
-    Title: (props: Heading1Props) => <Heading1 {...props} />
-  }
-}
+    Title: (props: Heading1Props) => <Heading1 {...props} />,
+  },
+};
 
 const heading = (Comp: any) => (props: HeadingProps): React.ReactNode => {
   return React.createElement(
@@ -52,44 +49,43 @@ const heading = (Comp: any) => (props: HeadingProps): React.ReactNode => {
       },
       props.children,
     ),
-  )
-}
+  );
+};
 
 export class Markdown extends React.Component<MarkdownProps, {}> {
   public render() {
     const scope = this.props.scope;
 
-    const mappedScope = this.mapScope({ ...scope })
-    const remarkReactComponents = this.applyProps(mappedScope)
+    const mappedScope = this.mapScope({ ...scope });
+    const remarkReactComponents = this.applyProps(mappedScope);
 
     const opts = {
-      // pass Lab components to remark-react for rendering
-      remarkReactComponents,
-    }
+      remarkReactComponents, // 上書きする
+    };
     // @ts-ignore
     const element = remark()
       .use(remarkSlug)
       .use(remarkReact, opts)
-      .processSync(text).contents
+      .processSync(this.props.text).contents;
 
-    return element
+    return element;
   }
 
   private mapScope = (scope: ScopedComponents): MappedScope => {
-    const h1 = scope.Title
+    const h1 = scope.Title;
     return {
       h1: h1 ? heading(h1) : undefined,
-    }
-  }
+    };
+  };
 
   private applyProps = (scope: MappedScope) => {
-    const props = { ...defaultProps, ...options.markdownProps }
+    const props = { ...defaultProps };
     Object.keys(props).forEach(key => {
       if (!scope[key]) {
-        return
+        return;
       }
-      scope[key].defaultProps = { ...scope[key].defaultProps, ...props[key] }
-    })
-    return scope
-  }
+      scope[key].defaultProps = { ...scope[key].defaultProps, ...props[key] };
+    });
+    return scope;
+  };
 }
