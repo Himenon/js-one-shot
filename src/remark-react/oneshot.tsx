@@ -4,7 +4,7 @@ import * as html from 'remark-html';
 import remarkReact from 'remark-react';
 
 export interface AppProps {
-  title: string;
+  body: string;
 }
 
 // @ts-ignore
@@ -22,7 +22,7 @@ export class App extends React.Component<AppProps, {}> {
           sanitize: false,
         })
         .use(html)
-        .processSync(this.props.title).contents,
+        .processSync(this.props.body).contents,
     };
     return <div dangerouslySetInnerHTML={content} />;
   }
