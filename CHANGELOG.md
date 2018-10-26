@@ -1,3 +1,51 @@
+#### 1.0.5 (2018-10-26)
+
+##### Chores
+
+* **lint:**  tslintを有効に (4872b512)
+
+##### Documentation Changes
+
+* **README:**  update README (a22429ae)
+
+##### New Features
+
+* **hast-to-hyperscript:**  サンプルコードの追加) (a2fbfac4)
+* **react:**  reactのシンプルな検証環境(仮) (ca185b8c)
+* **express-session:**
+  *  sessionの動作確認と、テストの追加 (30ee9a2f)
+  *  express-sessionの動作検証を追加 (cdb5ad48)
+
+##### Other Changes
+
+* **event-emitter:**
+  *  onの調査 (089085ed)
+  *  EventEmitternの検証を追加 (26a9574b)
+* **remark:**
+  *  remark-reactのテストを追加 (9d0af15a)
+  *  remark関連の追加 (45e29192)
+* **html:**  htmlとdangerousSetInnnerHTML (368b82d5)
+* **webpack:**  webpackを追加 (f8333255)
+* **code:**
+  *  transformJSX + @babel/standaloneのコード (bc7283a7)
+  *  memorizeとstandaloneのコードを追加 (80daa2f3)
+* **add:**
+  *  new Functionを用いたReact.createElementの実験 (c552642a)
+  *  検証内容の追加 (4452fbcc)
+* **pkg:**  ライブラリのバージョン上げ (9c2f4fa2)
+* **tslint:**
+  *  fixした (d412d323)
+  *  Linterを入れた (f0dcb5b9)
+
+##### Tests
+
+* **react:**  reactのテストを追加 (302d3bb1)
+* **express-session:**
+  *  --forceExitを追加 (fd53d582)
+  *  --detectOpenHandlesを追加 (598f5f48)
+  *  jestが終了しない (4a945f73)
+  *  テストの追加 (4e3a9b94)
+
 #### 1.0.4 (2018-10-14)
 
 ##### New Features
