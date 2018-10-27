@@ -30,15 +30,11 @@ const remarkProcess = remark()
   })
   .use(html);
 
-console.log(remarkReactComponents);
-console.log(remarkProcess.processSync('# タイトル').contents);
-
 export class App extends React.Component<AppProps, {}> {
   public render() {
     const content = {
       __html: remarkProcess.processSync(this.props.title).contents,
     };
-    console.log(this.props.title);
     return <div dangerouslySetInnerHTML={content} />;
   }
 }
