@@ -1,4 +1,3 @@
-import * as React from 'react';
 import * as OneShot from '../oneshot';
 
 describe('hast-to-hyperscript', () => {
@@ -9,6 +8,6 @@ describe('hast-to-hyperscript', () => {
 
   test('sample test with React.createElement', () => {
     const doc = OneShot.mainReact();
-    expect(doc).toBe(<div />);
+    expect(doc).toBeUndefined();
   });
 });

@@ -1,10 +1,13 @@
 import * as React from 'react';
 import * as remark from 'remark';
 import * as html from 'remark-html';
+// @ts-ignore
+import markdown from 'remark-parse';
 import remarkReact from 'remark-react';
+import { remarkReactComponents } from './options';
 
 export interface AppProps {
-  title: string;
+  contents: string;
 }
 
 // @ts-ignore
@@ -13,53 +16,19 @@ const processor = remark().use(remarkReact, {
   sanitize: true,
 });
 
-const remarkReactComponents = {
-  h1: (props: any): React.ReactNode => {
-    return React.createElement(
-      'p',
-      props,
-      React.createElement(
-        'a',
-        {
-          href: '#',
-          style: {
-            color: 'inherit',
-            textDecoration: 'none',
-          },
-        },
-        props.children,
-      ),
-    );
-  },
-  h2: (props: any): React.ReactNode => {
-    return React.createElement(
-      'a',
-      props,
-      React.createElement(
-        'a',
-        {
-          href: '#',
-          style: {
-            color: 'inherit',
-            textDecoration: 'none',
-          },
-        },
-        props.children,
-      ),
-    );
-  },
-};
-
-// @ts-ignore
-const remarkProcess = remark()
-  .use(remarkReact, {
-    createElement: React.createElement,
-    remarkReactComponents,
-  })
-  .use(html);
-
 export class App extends React.Component<AppProps, {}> {
   public render() {
-    return remarkProcess.processSync(this.props.title).contents;
+    // @ts-ignore
+    const remarkProcess = remark()
+      .use(remarkReact, {
+        remarkReactComponents,
+      })
+      .use(markdown, {
+        commonmark: true,
+        breaks: false,
+      })
+      .use(html);
+    const contents = { __html: remarkProcess.processSync(this.props.contents).contents };
+    return <div dangerouslySetInnerHTML={contents} />;
   }
 }
