@@ -14,11 +14,39 @@ const processor = remark().use(remarkReact, {
 });
 
 const remarkReactComponents = {
-  h1(props: any) {
-    return React.createElement('p', props, props.children);
+  h1: (props: any): React.ReactNode => {
+    return React.createElement(
+      'p',
+      props,
+      React.createElement(
+        'a',
+        {
+          href: '#',
+          style: {
+            color: 'inherit',
+            textDecoration: 'none',
+          },
+        },
+        props.children,
+      ),
+    );
   },
-  h2(props: any) {
-    return React.createElement('a', props, props.children);
+  h2: (props: any): React.ReactNode => {
+    return React.createElement(
+      'a',
+      props,
+      React.createElement(
+        'a',
+        {
+          href: '#',
+          style: {
+            color: 'inherit',
+            textDecoration: 'none',
+          },
+        },
+        props.children,
+      ),
+    );
   },
 };
 
@@ -32,9 +60,6 @@ const remarkProcess = remark()
 
 export class App extends React.Component<AppProps, {}> {
   public render() {
-    const content = {
-      __html: remarkProcess.processSync(this.props.title).contents,
-    };
-    return <div dangerouslySetInnerHTML={content} />;
+    return remarkProcess.processSync(this.props.title).contents;
   }
 }
