@@ -11,6 +11,8 @@ describe('MarkdownComponent', () => {
       scope: { Title: (props1: Heading1Props) => <Heading1 {...props1} /> },
     };
     const result = renderer.create(<Markdown {...props} />);
-    expect(result).toBe('<div><h1>Markdown</h1></div>');
+    const jsonValue = result.toJSON();
+    expect(jsonValue).not.toBeNull();
+    expect(jsonValue!.props).toEqual({});
   });
 });

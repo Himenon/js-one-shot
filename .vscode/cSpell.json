@@ -15,7 +15,8 @@
     "portfinder",
     "resave",
     "hoge",
-    "foo"
+    "foo",
+    "rehype"
   ],
   "flagWords": [
     "hte"
