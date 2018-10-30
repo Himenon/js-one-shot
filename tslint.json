@@ -26,6 +26,7 @@
         "semi": true
       }
     ],
+    "no-var-requires": false,
     "no-string-throw": true,
     "no-unused-expression": true,
     "no-duplicate-variable": true,

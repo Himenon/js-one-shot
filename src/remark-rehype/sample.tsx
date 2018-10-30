@@ -1,31 +1,41 @@
-// @ts-ignore
-import doc from 'rehype-document';
-// @ts-ignore
-import parse2 from 'rehype-parse';
-// @ts-ignore
-import html from 'rehype-stringify';
-// @ts-ignore
-import * as remark from 'remark';
-// @ts-ignore
-import markdown from 'remark-parse';
-// @ts-ignore
-import remark2rehype from 'remark-rehype';
-// @ts-ignore
-import * as unified from 'unified';
+const unified = require('unified');
+const parse = require('remark-parse');
+const markdown = require('remark-stringify');
+const html = require('rehype-stringify');
+const remark2rehype = require('remark-rehype');
 
-// @ts-ignore
-const processor = remark().use(markdown, {
-  commonmark: true,
-  breaks: false,
-});
-
-export const main = () => {
-  // @ts-ignore
+export const main1 = (text: string) => {
   return unified()
-    .use(markdown)
-    .use(parse2)
+    .use(parse)
     .use(remark2rehype)
     .use(html)
-    .processSync('## Hello, world! ##')
+    .processSync(text)
+    .toString();
+};
+
+export const main2 = (text: string) => {
+  return unified()
+    .use(parse)
+    .use(remark2rehype, { allowDangerousHTML: true })
+    .use(html, { allowDangerousHTML: true })
+    .processSync(text)
+    .toString();
+};
+
+export const main3 = (text: string) => {
+  return unified()
+    .use(parse)
+    .use(remark2rehype, unified())
+    .use(markdown)
+    .processSync(text)
+    .toString();
+};
+
+export const main4 = (text: string) => {
+  return unified()
+    .use(parse)
+    .use(remark2rehype, unified(), { allowDangerousHTML: true })
+    .use(markdown)
+    .processSync(text)
     .toString();
 };
