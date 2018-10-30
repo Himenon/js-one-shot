@@ -1,5 +1,4 @@
-// @ts-ignore
-import * as toH from 'hast-to-hyperscript';
+const toH = require('hast-to-hyperscript');
 import * as h from 'hyperscript';
 import * as React from 'react';
 const tree = {
@@ -17,6 +16,7 @@ const tree = {
     { type: 'text', value: ' echo.' },
   ],
 };
+
 export const main = () => {
   return toH(h, tree).outerHTML;
 };

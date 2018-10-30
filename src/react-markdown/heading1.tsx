@@ -11,7 +11,7 @@ export class Heading1 extends React.Component<Heading1Props, {}> {
   }
 }
 
-export const heading = (Comp: any) => (props: Heading1Props): React.ReactNode => {
+export const heading = (Comp: any) => (props: Heading1Props): React.ReactElement<any> => {
   return React.createElement(
     Comp,
     props,

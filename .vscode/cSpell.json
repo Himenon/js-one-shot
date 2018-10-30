@@ -16,7 +16,8 @@
     "resave",
     "hoge",
     "foo",
-    "rehype"
+    "rehype",
+    "hyperscript"
   ],
   "flagWords": [
     "hte"

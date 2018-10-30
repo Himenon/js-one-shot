@@ -9,7 +9,7 @@ import * as remarkSlug from 'remark-slug';
 import { heading, Heading1, Heading1Props } from './heading1';
 
 export interface ScopedComponents {
-  Title: (props: Heading1Props) => React.ReactElement<Heading1Props>;
+  Title?: (props: Heading1Props) => React.ReactElement<Heading1Props>;
 }
 
 export interface MarkdownProps {
@@ -22,7 +22,7 @@ export interface MappedScope {
   h1: React.ReactNode | undefined;
 }
 
-const defaultProps: MarkdownProps = {
+export const defaultProps: MarkdownProps = {
   h1: {},
   scope: {
     Title: (props: Heading1Props) => <Heading1 {...props} />,
