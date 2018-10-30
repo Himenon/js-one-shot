@@ -15,7 +15,9 @@
     "portfinder",
     "resave",
     "hoge",
-    "foo"
+    "foo",
+    "rehype",
+    "hyperscript"
   ],
   "flagWords": [
     "hte"

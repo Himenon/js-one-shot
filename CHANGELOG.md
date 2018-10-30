@@ -1,3 +1,29 @@
+### 1.1.0 (2018-10-30)
+
+##### New Features
+
+* **markdown:**  MarkdownをReactのComponentに対応させてレンダリングする (f963ebc6)
+
+##### Other Changes
+
+* **test:**  remark系を5系にした (6a641446)
+* **remark:**  一旦テストを通すようにした (dc933df2)
+* **remark-rect:**  contentsを直接返す (89b734df)
+* **package:**  packageのアップデートと、テストの追加 (6d737cd2)
+* **event-emitter:**  castを排除 (b792b61f)
+
+##### Refactors
+
+* **test:**  不要なimportの削除 (0e9f0154)
+
+##### Tests
+
+* **coverage:**  カバレッジ100%にする (00f9eb20)
+* **remark:**  テストの修正 (728e9e93)
+* **remark-react:**  テスト追加 (4dad026d)
+* **add:**  テスト項目の追加 (da400f40)
+* **react-markdown:**  落ちるテストを書いた (0ef54973)
+
 #### 1.0.5 (2018-10-26)
 
 ##### Chores
