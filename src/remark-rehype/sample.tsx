@@ -9,15 +9,15 @@ import * as remark from 'remark';
 // @ts-ignore
 import markdown from 'remark-parse';
 // @ts-ignore
-import parse from 'remark-parse';
-// @ts-ignore
 import remark2rehype from 'remark-rehype';
 // @ts-ignore
-import * as stringify from 'remark-stringify';
-// @ts-ignore
-import * as vfile from 'to-vfile';
-// @ts-ignore
 import * as unified from 'unified';
+
+// @ts-ignore
+const processor = remark().use(markdown, {
+  commonmark: true,
+  breaks: false,
+});
 
 export const main = () => {
   // @ts-ignore
