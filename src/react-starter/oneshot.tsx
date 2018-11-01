@@ -7,7 +7,7 @@ export class App extends React.Component<{}, { text: string }> {
   constructor(props: {}) {
     super(props);
     this.state = {
-      text: '# hello world'
+      text: '# hello world',
     };
     this.onChange = this.onChange.bind(this);
   }
@@ -18,13 +18,18 @@ export class App extends React.Component<{}, { text: string }> {
 
   public render() {
     // @ts-ignore
-    const markUp = { __html: remark().use(reactRenderer, {
-      sanitize: false,
-    }).use(html).processSync(this.state.text).contents };
+    const markUp = {
+      __html: remark()
+        .use(reactRenderer, {
+          sanitize: false,
+        })
+        .use(html)
+        .processSync(this.state.text).contents,
+    };
     return (
       <div>
         <textarea value={this.state.text} onChange={this.onChange} />
-        <div id='preview' dangerouslySetInnerHTML={markUp} />
+        <div id="preview" dangerouslySetInnerHTML={markUp} />
       </div>
     );
   }

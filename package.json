@@ -1,6 +1,6 @@
 {
   "name": "js-one-shot",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Libraryの調査",
   "main": "entry.js",
   "author": "Himenon",
@@ -11,6 +11,8 @@
     "express:session": "node ./lib/express-session/oneshot.js",
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "lint:fix": "yarn run lint -- --fix",
+    "prettier": "prettier --write src/**/*.ts src/**/*.tsx",
+    "format": "run-s prettier lint:fix",
     "test": "jest -c jest.config.json --detectOpenHandles",
     "test:coverage": "yarn run test -- --coverage && cat ./coverage/lcov.info | npx coveralls",
     "test:watch": "yarn run test -- --watchAll --verbose false",

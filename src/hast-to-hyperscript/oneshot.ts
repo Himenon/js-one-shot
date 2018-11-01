@@ -21,7 +21,12 @@ export const main = () => {
   return toH(h, tree).outerHTML;
 };
 
-const hashTree = { type: 'element', tagName: 'div', properties: {}, children: [] };
+const hashTree = {
+  type: 'element',
+  tagName: 'div',
+  properties: {},
+  children: [],
+};
 
 export const customH = (name: string, props: any, children: any) => {
   return React.createElement(name, props, children);

@@ -4,4 +4,3 @@ import * as ReactDOM from 'react-dom';
 import { App } from './oneshot';
 
 ReactDOM.render(<App />, document.getElementById('app'));
-

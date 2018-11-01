@@ -19,13 +19,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(
   session({
-    name : 'app.sid',
+    name: 'app.sid',
     secret: 'keyboard cat2',
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false, maxAge: 36000 }, // when local -> secure: false
-    store: sessionStore
-  })
+    store: sessionStore,
+  }),
 );
 
 const sessionCheck = (req: express.Request, res: express.Response, next: express.NextFunction) => {
@@ -36,12 +36,9 @@ const sessionCheck = (req: express.Request, res: express.Response, next: express
   }
 };
 
-app.get(
-  '/',
-  sessionCheck,
-  (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    const localSession = req.session as OneShotSession;
-    res.send(`
+app.get('/', sessionCheck, (req: express.Request, res: express.Response, next: express.NextFunction) => {
+  const localSession = req.session as OneShotSession;
+  res.send(`
     <!DOCTYPE html>
     <html lang="en">
       <meta charset="UTF-8">
@@ -54,8 +51,7 @@ app.get(
     </body>
     </html>
     `);
-  }
-);
+});
 
 export const getLoginViewContent = (err?: { message: string }): string => {
   let result = `
@@ -81,53 +77,35 @@ export const getLoginViewContent = (err?: { message: string }): string => {
 
 app
   .route('/login')
-  .get(
-    (
-      req: express.Request,
-      res: express.Response,
-      next: express.NextFunction
-    ) => {
-      res.write(getLoginViewContent());
+  .get((req: express.Request, res: express.Response, next: express.NextFunction) => {
+    res.write(getLoginViewContent());
+    res.end();
+  })
+  .post((req: express.Request, res: express.Response, next: express.NextFunction) => {
+    if (req.session && req.body && req.body.userName) {
+      req.session.userName = req.body.userName;
+      req.session.save(() => {
+        res.redirect('/');
+      });
+    } else {
+      res.write(
+        getLoginViewContent({
+          message: '入力が正しくありません。確認して再入力してください。',
+        }),
+      );
       res.end();
     }
-  )
-  .post(
-    (
-      req: express.Request,
-      res: express.Response,
-      next: express.NextFunction
-    ) => {
-      if (req.session && req.body && req.body.userName) {
-        req.session.userName = req.body.userName;
-        req.session.save(() => {
-          res.redirect('/');
-        });
-      } else {
-        res.write(getLoginViewContent({ message: '入力が正しくありません。確認して再入力してください。' }));
-        res.end();
-      }
-    }
-  );
+  });
 
-app.route('/logout')
-   .get(
-    (
-      req: express.Request,
-      res: express.Response,
-      next: express.NextFunction
-    ) => {
-      if (req.session) {
-        req.session.destroy(() => undefined);
-      }
-      res.redirect('/login');
-    }
-  );
+app.route('/logout').get((req: express.Request, res: express.Response, next: express.NextFunction) => {
+  if (req.session) {
+    req.session.destroy(() => undefined);
+  }
+  res.redirect('/login');
+});
 
 portfinder.getPort({ port: 3000 }, (error: any, port: number) => {
   server = app.listen(port, () => process.stdout.write(`Example app listening on port ${port}!`));
 });
 
-export {
-  app,
-  server,
-};
+export { app, server };

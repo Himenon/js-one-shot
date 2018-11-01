@@ -7,8 +7,8 @@ export const Html = (props: React.Props<{}>) => {
         <title>App</title>
       </head>
       <body>
-        <div id='app'>{props.children}</div>
-        <script src='/lib/react-starter/client.js' />
+        <div id="app">{props.children}</div>
+        <script src="/lib/react-starter/client.js" />
       </body>
     </html>
   );

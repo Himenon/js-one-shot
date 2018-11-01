@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/Himenon/js-one-shot.svg?branch=master)](https://travis-ci.org/Himenon/js-one-shot)
 [![Coverage Status](https://coveralls.io/repos/github/Himenon/js-one-shot/badge.svg?branch=master)](https://coveralls.io/github/Himenon/js-one-shot?branch=master)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 ## Library
 

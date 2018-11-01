@@ -16,7 +16,12 @@ export class HogeComponent extends React.Component<HogeProps, {}> {
 
 export class FooComponent extends React.Component<FooProps, {}> {
   public render() {
-    return <div>${this.props.name}{this.props.children}</div>;
+    return (
+      <div>
+        ${this.props.name}
+        {this.props.children}
+      </div>
+    );
   }
 }
 

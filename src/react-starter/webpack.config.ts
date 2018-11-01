@@ -5,8 +5,7 @@ import * as webpack from 'webpack';
 
 const appDirectory = fs.realpathSync(process.cwd());
 
-export const resolveApp = (relativePath: string) =>
-  path.resolve(appDirectory, relativePath);
+export const resolveApp = (relativePath: string) => path.resolve(appDirectory, relativePath);
 
 import ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
@@ -14,7 +13,7 @@ const webpackModule: webpack.Configuration[] = [
   {
     stats: 'errors-only',
     entry: {
-      index: resolveApp('src/react-starter/client.tsx')
+      index: resolveApp('src/react-starter/client.tsx'),
     },
     devtool: 'cheap-module-source-map',
     output: {
@@ -22,8 +21,7 @@ const webpackModule: webpack.Configuration[] = [
       chunkFilename: '[name].chunk.js',
       filename: '[name].js',
       pathinfo: true,
-      devtoolModuleFilenameTemplate: info =>
-        path.resolve(info.absoluteResourcePath).replace(/\\/g, '/')
+      devtoolModuleFilenameTemplate: info => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
     },
     module: {
       rules: [
@@ -34,32 +32,32 @@ const webpackModule: webpack.Configuration[] = [
               loader: 'ts-loader',
               options: {
                 transpileOnly: true,
-                experimentalWatchApi: true
-              }
-            }
-          ]
+                experimentalWatchApi: true,
+              },
+            },
+          ],
         },
         {
           test: /\.html$/,
-          loader: 'html-loader'
-        }
-      ]
+          loader: 'html-loader',
+        },
+      ],
     },
     plugins: [
       new ForkTsCheckerWebpackPlugin({
         async: true,
         watch: resolveApp('src/react-starter'),
         tsconfig: resolveApp('tsconfig.json'),
-        tslint: resolveApp('tslint.json')
+        tslint: resolveApp('tslint.json'),
       }),
       new HtmlWebpackPlugin({
         chunks: ['index'],
         template: './src/react-starter/index.html',
-        filename: 'index.html'
-      })
+        filename: 'index.html',
+      }),
     ],
     resolve: {
-      extensions: ['.mjs', '.web.ts', '.ts', '.web.tsx', '.tsx', '.web.js', '.js', '.json', '.web.jsx', '.jsx']
+      extensions: ['.mjs', '.web.ts', '.ts', '.web.tsx', '.tsx', '.web.js', '.js', '.json', '.web.jsx', '.jsx'],
     },
     node: {
       dgram: 'empty',
@@ -68,9 +66,9 @@ const webpackModule: webpack.Configuration[] = [
       tls: 'empty',
       child_process: 'empty',
       __dirname: false,
-      __filename: false
-    }
-  }
+      __filename: false,
+    },
+  },
 ];
 
 export default webpackModule;

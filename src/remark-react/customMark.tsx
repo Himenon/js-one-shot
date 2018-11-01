@@ -28,7 +28,9 @@ export class App extends React.Component<AppProps, {}> {
         breaks: false,
       })
       .use(html);
-    const contents = { __html: remarkProcess.processSync(this.props.contents).contents };
+    const contents = {
+      __html: remarkProcess.processSync(this.props.contents).contents,
+    };
     return <div dangerouslySetInnerHTML={contents} />;
   }
 }
