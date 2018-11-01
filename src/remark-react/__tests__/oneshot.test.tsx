@@ -14,8 +14,7 @@ test('MarkdownからHTMLがレンダリングされていることを確認す�
   expect(componentJSON.props.dangerouslySetInnerHTML).not.toBeUndefined();
   expect(componentJSON.props.dangerouslySetInnerHTML.__html).not.toBeUndefined();
   const html = componentJSON.props.dangerouslySetInnerHTML.__html;
-  expect(html).toBe(`<h1>Hello world</h1>
-`);
+  expect(html).toBe(`<h1>Hello world</h1>\n`);
 });
 
 test('code', () => {
@@ -27,13 +26,7 @@ test('code', () => {
   ##### Heading5
   ###### Heading6
   `;
-  const expectValue = `<h1>Heading1</h1>
-<h2>Heading2</h2>
-<h3>Heading3</h3>
-<h4>Heading4</h4>
-<h5>Heading5</h5>
-<h6>Heading6</h6>
-`;
+  const expectValue = `<h1>Heading1</h1>\n<h2>Heading2</h2>\n<h3>Heading3</h3>\n<h4>Heading4</h4>\n<h5>Heading5</h5>\n<h6>Heading6</h6>\n`;
 
   const component = renderer.create(<OneShot.App body={headings} />);
   const componentJSON = component.toJSON()!;

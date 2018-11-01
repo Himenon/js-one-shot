@@ -15,12 +15,10 @@ test('MarkdownからHTMLがレンダリングされていることを確認す�
   expect(componentJSON.props.dangerouslySetInnerHTML).not.toBeUndefined();
   expect(componentJSON.props.dangerouslySetInnerHTML.__html).not.toBeUndefined();
   const html = componentJSON.props.dangerouslySetInnerHTML.__html;
-  expect(html).toBe(`<h1>Hello world</h1>
-`);
+  expect(html).toBe(`<h1>Hello world</h1>\n`);
 });
 
 test('React.renderToStaticMarkupで結果を確認する', () => {
   const component = ReactDOMServer.renderToStaticMarkup(<OneShot.App contents="# Hello world" />);
-  expect(component).toBe(`<div><h1>Hello world</h1>
-</div>`);
+  expect(component).toBe(`<div><h1>Hello world</h1>\n</div>`);
 });

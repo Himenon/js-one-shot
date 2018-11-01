@@ -12,7 +12,7 @@ test('MarkdownのHeaderに書いた設定が取得可能か', () => {
   const params = getConfigDataFromMarkdown(path.join(__dirname, './sample-02.md'));
   expect(params.data).toEqual({
     title: 'Hello',
-    slug: 'home'
+    slug: 'home',
   });
   expect(params.content).toEqual('<h1>Hello world!</h1>\n');
 });
@@ -21,8 +21,8 @@ test('設定の階層構造の読み込みが可能か', () => {
   const params = getConfigDataFromMarkdown(path.join(__dirname, './sample-03.md'));
   expect(params.data).toEqual({
     meta: {
-      'twitter:og': 'twitter-ogp'
-    }
+      'twitter:og': 'twitter-ogp',
+    },
   });
   expect(params.content).toEqual('<h1>Hello world!</h1>\n');
 });
@@ -38,8 +38,8 @@ test('YAMLの設定の前に文字列が合った場合のExceptionの確認', (
   const params = getConfigDataFromMarkdown(path.join(__dirname, './sample-05.md'));
   expect(params.data).not.toEqual({
     meta: {
-      title: 'Before Contents'
-    }
+      title: 'Before Contents',
+    },
   });
   expect(params.data).toEqual({});
   expect(params.content).not.toEqual('設定の前に文字列が合った場合');
@@ -54,7 +54,7 @@ title: Before Contents
 test('複数のSectionがあるときの処理', () => {
   const params = getConfigDataFromMarkdown(path.join(__dirname, './sample-06.md'));
   expect(params.data).toEqual({
-    title: '複数のSectionがある時'
+    title: '複数のSectionがある時',
   });
   expect(params.content).toEqual(`設定の前に文字列が合った場合
 
