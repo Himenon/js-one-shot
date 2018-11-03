@@ -21,6 +21,7 @@ export class App extends React.Component<AppProps, {}> {
     // @ts-ignore
     const remarkProcess = remark()
       .use(remarkReact, {
+        createElement: React.createElement,
         remarkReactComponents,
       })
       .use(markdown, {
