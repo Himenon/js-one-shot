@@ -7,12 +7,6 @@ export interface AppProps {
   body: string;
 }
 
-// @ts-ignore
-const processor = remark().use(remarkReact, {
-  prefix: 'md-',
-  sanitize: true,
-});
-
 export class App extends React.Component<AppProps, {}> {
   public render() {
     const content = {

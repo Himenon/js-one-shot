@@ -16,6 +16,6 @@ export const remarkReactComponents = {
     return React.createElement('h1', props, props.children);
   },
   a: (props: AnchorProps): React.ReactElement<AnchorProps> => {
-    return React.createElement('p', props, props.children);
+    return <h1>{props.children}</h1>;
   },
 };

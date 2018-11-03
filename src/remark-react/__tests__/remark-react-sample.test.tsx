@@ -25,5 +25,5 @@ test('React.renderToStaticMarkupで結果を確認する', () => {
 
 test('Anchorのレンダリングテスト', () => {
   const component = ReactDOMServer.renderToStaticMarkup(<OneShot.App contents="[anchor](https://example.com)" />);
-  expect(component).toBe(`<div><h1>Hello world</h1>\n</div>`);
+  expect(component).toBe(`<div><p><a href="https://example.com">anchor</a></p>\n</div>`);
 });
