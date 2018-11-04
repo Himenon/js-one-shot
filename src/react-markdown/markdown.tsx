@@ -1,5 +1,4 @@
 import * as React from 'react';
-// @ts-ignore
 import * as remark from 'remark';
 // @ts-ignore
 import * as remarkReact from 'remark-react';
@@ -39,11 +38,10 @@ export class Markdown extends React.Component<MarkdownProps, {}> {
     const opts = {
       remarkReactComponents, // 上書きする
     };
-    // @ts-ignore
     const element = remark()
       .use(remarkSlug)
       .use(remarkReact, opts)
-      .processSync(this.props.text).contents;
+      .processSync(this.props.text || '').contents;
 
     return element;
   }

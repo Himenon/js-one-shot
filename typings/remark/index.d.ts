@@ -1,9 +1,20 @@
-interface Parser {
-  use: any
+declare namespace Remark {
+	interface IRemarkResult {
+		data: any;
+		messages: any;
+		history: any;
+		cwd: string;
+		contents: string;
+	}
+
+	interface Processor {
+		use(plugin: any, opts?: Object): Processor;
+    process(content: string): Promise<IRemarkResult>;
+    processSync(content: string): IRemarkResult;
+	}
 }
-interface Options {}
 
-
-declare function parse(options: Options): Parser;
-
-export default parse;
+declare module 'remark' {
+	const remark: () => Remark.Processor;
+	export = remark;
+}
