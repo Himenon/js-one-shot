@@ -7,7 +7,7 @@ declare module '@mdx-js/tag' {
   }
 
   export interface MDXTagProps {
-    name: string;
+    name: keyof JSX.IntrinsicElements;
     parentName?: string;
     props?: {};
     children?: React.ReactNode[] | string;

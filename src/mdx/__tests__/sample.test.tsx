@@ -1,10 +1,8 @@
-import * as renderer from 'react-test-renderer';
+import * as ReactDOM from 'react-dom/server';
 import { makeComponent } from '../sample';
 
-test('renderToStaticMarkup', () => {
-  const component = makeComponent('hoge');
-  console.log(component);
-  const result = renderer.create(component);
-  const jsonValue = result.toJSON();
-  expect(jsonValue).toEqual('<h2>hoge\n</h2>');
+test('renderToStaticMarkup2', () => {
+  const component = makeComponent('h1', 'hoge');
+  const result = ReactDOM.renderToStaticMarkup(component);
+  expect(result).toEqual('<h2 style="color:tomato">hoge</h2>');
 });
