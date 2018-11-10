@@ -29,4 +29,19 @@ describe('remarkReactComponents', () => {
       children: ['foo'],
     });
   });
+
+  test('a', () => {
+    const result = renderer.create(
+      Options.remarkReactComponents.a({
+        href: 'http://example.com',
+        children: 'foo',
+      }),
+    );
+    const jsonValue = result.toJSON();
+    expect(jsonValue).toEqual({
+      type: 'h1',
+      props: {},
+      children: ['foo'],
+    });
+  });
 });
