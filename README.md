@@ -25,12 +25,22 @@
   https://github.com/jonschlinkert/gray-matter
 </details>
 <details>
+  <summary>mdx</summary>
+  <p>https://github.com/mdx-js/mdx</p>
+  <p>@mdx-js/tag: https://github.com/mdx-js/mdx/tree/master/packages/tag</p>
+  <p>@mdx-js/mdx: https://github.com/mdx-js/mdx/tree/master/packages/mdx</p>
+</details>
+<details>
   <summary>remark</summary>
   https://github.com/gnab/remark
 </details>
 <details>
   <summary>remark-react</summary>
   https://github.com/mapbox/remark-react
+</details>
+<details>
+  <summary>remark-rehype</summary>
+  https://github.com/remarkjs/remark-rehype
 </details>
 <details>
   <summary>section-matter</summary>

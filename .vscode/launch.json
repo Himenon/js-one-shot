@@ -15,6 +15,12 @@
       "request": "launch",
       "name": "express:session",
       "program": "${workspaceFolder}/lib/express-session/oneshot.js"
-    }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "remark:react:latest",
+      "program": "${workspaceFolder}/lib/remark-react-latest/sample.js"
+    },
   ]
 }

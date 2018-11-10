@@ -17,8 +17,8 @@ export class App extends React.Component<{}, { text: string }> {
   }
 
   public render() {
-    // @ts-ignore
     const markUp = {
+      // @ts-ignore
       __html: remark()
         .use(reactRenderer, {
           sanitize: false,

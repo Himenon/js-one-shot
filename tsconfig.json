@@ -51,6 +51,9 @@
       ],
       "section-matter*": [
         "./typings/section-matter*"
+      ],
+      "@mdx-js/*": [
+        "./typings/@mdx-js/*"
       ]
     },
   },
