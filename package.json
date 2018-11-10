@@ -16,6 +16,7 @@
     "test": "jest -c jest.config.json --detectOpenHandles",
     "test:coverage": "yarn run test -- --coverage && cat ./coverage/lcov.info | npx coveralls",
     "test:watch": "yarn run test -- --watchAll --verbose false",
+    "test:mdx": "jest -c jest.config.json --detectOpenHandles --findRelatedTests src/mdx/mdx-sample.tsx",
     "react:starter": "env DEBUG='*' webpack --config=./lib/react-starter/webpack.config.js --watch --mode=development",
     "version:major": "changelog -M && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version major",
     "version:minor": "changelog -m && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version minor",
@@ -77,7 +78,11 @@
     }
   },
   "dependencies": {
-    "@babel/core": "^7.1.2",
+    "@babel/core": "^7.1.5",
+    "@babel/generator": "^7.1.5",
+    "@babel/node": "^7.0.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/plugin-syntax-jsx": "^7.0.0",
     "@babel/plugin-transform-react-jsx": "^7.0.0",
     "@babel/standalone": "^7.1.0",
     "@mapbox/hast-util-table-cell-style": "^0.1.3",

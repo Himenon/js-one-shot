@@ -1,3 +1,18 @@
+declare module '@mdx-js/mdx' {
+  export interface Options { 
+    filepath?: string;
+    footnotes?: boolean;
+    mdPlugins?: any[];
+    hastPlugins?: any[];
+    compilers?: any[];
+    blocks?: string[];
+    skipExport?: boolean;
+  }
+  function mdx(content: string, options?: Options): string;
+  export function sync(content: string, options?: Options): string;
+  export default mdx;
+}
+
 declare module '@mdx-js/tag' {
   import * as React from 'react';
 

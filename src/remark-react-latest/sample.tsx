@@ -33,7 +33,7 @@ export class TestApp extends React.Component<{ body: string }, {}> {
   }
 }
 
-const main = () => {
+export const main = () => {
   console.log('実行します');
   const component = convert('# Hello world');
   console.log(component);
@@ -41,4 +41,4 @@ const main = () => {
   // console.log(component2);
 };
 
-main();
+// main();

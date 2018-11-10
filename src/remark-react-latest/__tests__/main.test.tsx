@@ -12,10 +12,10 @@ test('Reactに組み込んだ場合のテスト', () => {
   const component = renderer.create(<TestApp body="# h1を書き換える" />);
   const componentJSON = component.toJSON()!;
   const result = componentJSON.props.dangerouslySetInnerHTML.__html;
-  expect(result).toBe('<div><h2>h1を書き換える</h2>\n</div>');
+  expect(result).toEqual('<h1>h1を書き換える</h1>\n');
 });
 
 test('renderToStaticMarkup', () => {
   const result = ReactDOMServer.renderToStaticMarkup(<TestApp body="# h1を書き換える" />);
-  expect(result).toEqual('<div><h2>h1を書き換える</h2>\n</div>');
+  expect(result).toEqual('<div><h1>h1を書き換える</h1>\n</div>');
 });
